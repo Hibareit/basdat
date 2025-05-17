@@ -15,7 +15,7 @@ $result = mysqli_query($koneksi, $query);
 $client = mysqli_fetch_assoc($result);
 
 if (!$client) {
-    echo "Client tidak ditemukan.";
+    echo "Client tidak ditemukan anjayy"
     exit;
 }
 
