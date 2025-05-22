@@ -1,4 +1,4 @@
-<?php include 'layouts/header.php' ?>
+<?php include 'layouts/header.php'; ?>
 
 <section class="p-4 ml-5 mr-5 w-50">
     <form action="function.php" method="POST">
@@ -32,6 +32,20 @@
                 <option value="Profesional">Profesional</option>
             </select>
         </div>
+
+        <div class="mb-3">
+            <label for="coach_id" class="form-label">Pilih Coach</label>
+            <select class="form-select" name="coach_id" id="coach_id" required>
+                <?php
+                // Fetch options for coach from the database
+                include("koneksi.php");
+                $coachResult = mysqli_query($koneksi, "SELECT id, nama FROM coach ORDER BY nama ASC");
+                while ($row = mysqli_fetch_assoc($coachResult)) {
+                    echo '<option value="' . $row['id'] . '">' . htmlspecialchars($row['nama']) . '</option>';
+                }
+                ?>
+            </select>
+        </div>
         
         <div class="mb-3">
             <button type="submit" class="btn btn-primary" name="tambah_client">Simpan</button>
@@ -39,4 +53,4 @@
     </form>
 </section>
 
-<?php
+<?php include 'layouts/footer.php'; ?>

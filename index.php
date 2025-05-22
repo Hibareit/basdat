@@ -27,7 +27,7 @@ include 'layouts/header.php';
                 <th scope="col">Weight</th>
                 <th scope="col">Pengalaman</th>
                 <th scope="col">Aksi</th>
-                <th scope="col">Coach Id</th>
+                <th scope="col">Coach ID</th>
             </tr>
         </thead>
         <tbody>
@@ -62,9 +62,9 @@ include 'layouts/header.php';
                 <th scope="col">Nama</th>
                 <th scope="col">Tanggal Lahir</th>
                 <th scope="col">Pengalaman</th>
+                <th scope="col">Aksi</th>
                 <th scope="col">Kategori</th>
                 <th scope="col">Kegiatan</th>
-                <th scope="col">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -74,12 +74,12 @@ include 'layouts/header.php';
                     <td><?= $coach->nama ?></td>
                     <td><?= $coach->tanggal_lahir ?></td>
                     <td><?= $coach->pengalaman ?></td>
-                    <td><?= $coach->kategori_coach_id ?></td>
-                    <td><?= $coach->kegiatan_id ?></td>
                     <td>
                         <a href="edit_coach.php?id=<?= $coach->id ?>" class="btn btn-warning btn-sm">Edit</a>
                         <a href="function.php?action=delete&id=<?= $coach->id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
+                    <td><?= $coach->kategori_coach_id ?></td>
+                    <td><?= $coach->kegiatan_id ?></td>
                 </tr>
             <?php } ?>
         </tbody>

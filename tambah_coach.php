@@ -69,10 +69,7 @@ include 'layouts/header.php';
         <div class="form-group mb-3">
             <label for="kategori_coach_id">Kategori Coach</label>
             <select name="kategori_coach_id" id="kategori_coach_id" class="form-control" >
-                <option value="">-- Pilih Kategori Coach --</option>
-                  <option value="Pemula">Pemula</option>
-                <option value="Menengah">Menengah</option>
-                <option value="Profesional">Profesional</option>
+              
                 <?php while ($row = mysqli_fetch_assoc($kategoriResult)) : ?>
                     <option value="<?= $row['id'] ?>" <?= (isset($kategori_coach_id) && $kategori_coach_id == $row['id']) ? 'selected' : '' ?>>
                         <?= htmlspecialchars($row['keahlian']) ?>
@@ -83,10 +80,7 @@ include 'layouts/header.php';
         <div class="form-group mb-3">
             <label for="kegiatan_id">Kegiatan</label>
             <select name="kegiatan_id" id="kegiatan_id" class="form-control" >
-                <option value="">-- Pilih Kegiatan --</option>
-                  <option value="Pemula">Pemula</option>
-                <option value="Menengah">Menengah</option>
-                <option value="Profesional">Profesional</option>
+              
                 <?php while ($row = mysqli_fetch_assoc($kegiatanResult)) : ?>
                     <option value="<?= $row['id'] ?>" <?= (isset($kegiatan_id) && $kegiatan_id == $row['id']) ? 'selected' : '' ?>>
                         <?= htmlspecialchars($row['kegiatan']) ?>
