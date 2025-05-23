@@ -14,9 +14,8 @@ include '../layouts/header.php';
 
 <!-- KOLOM UNTUK TABEL CLIENT -->
 <section class="p-4 ml-5 mr-5 w-90">
-    <div class="d-flex flex-row justify-content-between">
+    <div class="d-flex flex-row justify-content-center">
         <h2>Data Client Gym</h2>
-        <a href="tambah_client.php" class="btn btn-primary p-2">+Tambah</a>
     </div>
     <table class="table table-light mt-3">
         <thead>
@@ -28,6 +27,7 @@ include '../layouts/header.php';
                 <th scope="col">Pengalaman</th>
                 <th scope="col">Aksi</th>
                 <th scope="col">Coach ID</th>
+                 <th><a href="../clientpage/tambah_client.php" class="btn btn-primary p-2">+Tambah</a></th>
             </tr>
         </thead>
         <tbody>
@@ -50,8 +50,5 @@ include '../layouts/header.php';
 </section>
 
 
-<section>
-      <a href="../coachpage/coach.php" class="btn btn-warning btn-sm">TABEL COACH</a>
-</section>
 
 <?php include '../layouts/footer.php'; ?>

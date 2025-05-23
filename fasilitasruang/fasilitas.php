@@ -9,7 +9,7 @@ include '../layouts/header.php';
 ?>
 <section class="p-4 ml-5 mr-2 w-90">
     <div class="d-flex flex-row justify-content-center">
-        <h2>Data Coach Gym</h2>
+        <h2>Data Fasilitas Ruang</h2>
        
     </div>
 
@@ -18,11 +18,9 @@ include '../layouts/header.php';
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nama</th>
-                <th scope="col">Tanggal Lahir</th>
-                <th scope="col">Pengalaman</th>
-                <th scope="col">Aksi</th>
-                <th scope="col">Kategori</th>
-                <th scope="col">Kegiatan</th>
+                <th scope="col">jenis</th>
+                <th scope="col">kegiatan</th>
+                <th scope="col">office boy</th>
                 <th><a href="../coachpage/tambah_coach.php" class="btn btn-primary p-2">+Tambah</a></th>
             </tr>
         </thead>
