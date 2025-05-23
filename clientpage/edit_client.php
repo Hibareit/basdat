@@ -1,6 +1,6 @@
 <?php 
-include 'layouts/header.php';
-include 'koneksi.php';
+include '../layouts/header.php';
+include '../koneksi.php';
 
 // Ambil data client berdasarkan ID
 $id = $_GET['id'] ?? null;
@@ -14,10 +14,7 @@ $query = "SELECT * FROM client WHERE id = $id";
 $result = mysqli_query($koneksi, $query);
 $client = mysqli_fetch_assoc($result);
 
-if (!$client) {
-    echo "Client tidak ditemukan anjayy"
-    exit;
-}
+
 
 // Ambil data coach untuk dropdown
 $coaches = mysqli_query($koneksi, "SELECT id, nama FROM coach");
@@ -84,4 +81,4 @@ $coaches = mysqli_query($koneksi, "SELECT id, nama FROM coach");
     </form>
 </section>
 
-<?php include 'layouts/footer.php'; ?>
+<?php include '../layouts/footer.php'; ?>

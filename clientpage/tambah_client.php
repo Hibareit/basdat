@@ -1,7 +1,7 @@
-<?php include 'layouts/header.php'; ?>
+<?php include '../layouts/header.php'; ?>
 
 <section class="p-4 ml-5 mr-5 w-50">
-    <form action="function.php" method="POST">
+    <form action="function_client.php" method="POST">
         <div class="mb-3">
             <label for="nama" class="form-label">Nama Client</label>
             <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan nama client..." required>
@@ -38,7 +38,7 @@
             <select class="form-select" name="coach_id" id="coach_id" required>
                 <?php
                 // Fetch options for coach from the database
-                include("koneksi.php");
+                include("../koneksi.php");
                 $coachResult = mysqli_query($koneksi, "SELECT id, nama FROM coach ORDER BY nama ASC");
                 while ($row = mysqli_fetch_assoc($coachResult)) {
                     echo '<option value="' . $row['id'] . '">' . htmlspecialchars($row['nama']) . '</option>';
@@ -53,4 +53,4 @@
     </form>
 </section>
 
-<?php include 'layouts/footer.php'; ?>
+<?php include '../layouts/footer.php'; ?>

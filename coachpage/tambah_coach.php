@@ -1,5 +1,5 @@
 <?php
-include("koneksi.php");
+include("../koneksi.php");
 
 $error = '';
 $success = '';
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-include 'layouts/header.php';
+include '../layouts/header.php';
 ?>
 
 <section class="p-4 ml-5 mr-5 w-90">
@@ -90,8 +90,8 @@ include 'layouts/header.php';
         </div>
 
         <button type="submit" class="btn btn-primary">Tambah Coach</button>
-        <a href="index.php" class="btn btn-secondary ms-2">Batal</a>
+        <a href="../clientpage/client.php" class="btn btn-secondary ms-2">Batal</a>
     </form>
 </section>
 
-<?php include 'layouts/footer.php'; ?>
+<?php include '../layouts/footer.php'; ?>

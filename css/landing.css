@@ -1,0 +1,149 @@
+/* Reset Dasar & Pengaturan Umum */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Font standar sistem */
+    line-height: 1.6;
+    color: #333; /* Warna teks default */
+}
+
+/* Pembungkus utama (.container) */
+.container {
+    display: flex;
+    min-height: 100vh; /* Tinggi minimal sebesar tinggi viewport */
+    flex-direction: row; /* Default: dua kolom berdampingan untuk desktop */
+}
+
+/* Bagian pertama: Area Form Login */
+.container section:first-child {
+    flex: 1 1 60%; /* Mengambil 60% lebar, bisa menyesuaikan */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Konten di tengah secara vertikal */
+    align-items: center; /* Konten di tengah secara horizontal */
+    padding: 40px;
+    background-color: #ffffff; /* Latar belakang putih untuk area form */
+    text-align: center;
+}
+
+/* Bagian kedua: Area Dekoratif Merah (sesuai komentar "section kosong (red)") */
+/* Sebaiknya berikan kelas khusus pada section kedua ini di HTML Anda, contoh: <section class="decorative-section"> */
+.container section:last-child {
+    flex: 1 1 40%; /* Mengambil 40% lebar */
+    background-color: #d32f2f; /* Warna merah (Anda bisa sesuaikan) */
+    /* Anda bisa menambahkan background-image atau gradient di sini */
+}
+
+/* Styling untuk Judul (h1) */
+.container section:first-child h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Judul "GYM UPI" */
+.container section:first-child h1:first-of-type {
+    font-size: 3rem; /* Ukuran lebih besar */
+    font-weight: 700;
+    color: #d32f2f; /* Warna merah untuk GYM UPI, atau sebagian */
+    /* Jika ingin "GYM" merah dan "UPI" hitam, gunakan <span> di HTML:
+       <h1><span style="color: #d32f2f;">GYM</span> <span style="color: #000;">UPI</span></h1>
+    */
+}
+
+/* Judul "WELCOME BACK" */
+.container section:first-child h1:nth-of-type(2) {
+    font-size: 1.5rem; /* Ukuran lebih kecil */
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+/* Styling untuk Input Fields */
+.container section:first-child input[type="text"],
+.container section:first-child input[type="password"],
+.container section:first-child input[type="button"] {
+    width: 100%;
+    max-width: 380px; /* Lebar maksimal input */
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efek focus pada input text dan password */
+.container section:first-child input[type="text"]:focus,
+.container section:first-child input[type="password"]:focus {
+    outline: none;
+    border-color: #d32f2f; /* Warna border merah saat fokus */
+    box-shadow: 0 0 8px rgba(211, 47, 47, 0.3); /* Bayangan lembut */
+}
+
+/* Styling untuk Tombol */
+.container section:first-child a{
+    background-color: #d32f2f; /* Warna latar merah untuk tombol */
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+.container section:first-child a:hover{
+    background-color: #691b1b;
+}
+
+.container section:first-child input[type="button"]:hover {
+    background-color: #b71c1c; /* Warna merah lebih gelap saat hover */
+}
+
+/* Penyesuaian untuk Tampilan Responsif (Mobile) */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Ubah menjadi satu kolom (vertikal) */
+    }
+
+    .container section:first-child,
+    .container section:last-child {
+        flex-basis: auto; /* Biarkan tinggi section menyesuaikan konten */
+        width: 100%; /* Lebar penuh untuk tampilan mobile */
+    }
+
+    /* Beri tinggi minimal untuk section dekoratif agar tetap terlihat */
+    .container section:last-child {
+        min-height: 200px;
+        /* Atau bisa disembunyikan jika tidak penting di mobile: display: none; */
+    }
+
+    .container section:first-child {
+        padding: 30px 20px; /* Kurangi padding di mobile */
+        order: 1; /* Pastikan form login tampil di atas jika urutan dibalik di mobile */
+    }
+    /* Bagian dekoratif akan otomatis menjadi order ke-2 (jika tidak ada order lain) */
+    .container section:last-child {
+       order: 2;
+    }
+
+
+    .container section:first-child h1:first-of-type {
+        font-size: 2.2rem; /* Sesuaikan ukuran font */
+    }
+
+    .container section:first-child h1:nth-of-type(2) {
+        font-size: 1.2rem;
+    }
+
+    .container section:first-child input[type="text"],
+    .container section:first-child input[type="password"],
+    .container section:first-child input[type="button"] {
+        max-width: 100%; /* Input mengambil lebar penuh dari parentnya di mobile */
+    }
+}

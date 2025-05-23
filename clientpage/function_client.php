@@ -1,5 +1,5 @@
 <?php
-include "koneksi.php";
+include "../koneksi.php";
 
 // FUNGSI
 function insertClient($koneksi, $nama, $gender, $weight, $pengalaman, $coach_id = null) {
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['tambah_client'])) {
     $coach_id = isset($_POST["coach_id"]) ? mysqli_real_escape_string($koneksi, $_POST["coach_id"]) : null;
 
     if (insertClient($koneksi, $nama, $gender, $weight, $pengalaman, $coach_id)) {
-        header("Location: index.php");
+        header("Location: ../clientpage/client.php");
         exit;
     } else {
         echo "Data gagal disimpan: " . mysqli_error($koneksi);
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_client'])) {
     $coach_id = isset($_POST["coach_id"]) ? mysqli_real_escape_string($koneksi, $_POST["coach_id"]) : null;
 
     if (updateClient($koneksi, $id, $nama, $gender, $weight, $pengalaman, $coach_id)) {
-        header("Location: index.php");
+        header("Location: ../clientpage/coach.php");
         exit;
     } else {
         echo "Data gagal diubah: " . mysqli_error($koneksi);
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
     $id = mysqli_real_escape_string($koneksi, $_GET["id"]);
 
     if (deleteClient($koneksi, $id)) {
-        header("Location: index.php");
+        header("Location: ../clientpage/client.php");
         exit;
     } else {
         echo "Data gagal dihapus: " . mysqli_error($koneksi);
