@@ -40,19 +40,24 @@
 </head>
 
 <body>
-    <section class="bg-danger text-white">
-        <div class="d-flex justify-content-center">  
-            <div class="p-4 " >
-                <h3 >ADMINISTRASI GYM</h3>
+    <section class="p-3 bg-danger text-white">
+        <div>  
+            <div class="justify-content-center " >
+                <h3 class="d-flex justify-content-center">ADMINISTRASI GYM</h3>
             </div>
-                    <ul class="p-4 d-flex gap-3 custom-list">
+            <div class="">
+
+            <ul class="m-2 p-2 d-flex gap-3 custom-list d-flex justify-content-center">
                 <li> <a href="../../../basdat/clientpage/client.php">Client</a></li>
                 <li> <a href="../../../basdat/coachpage/coach.php">Coach</a></li>
                 <li> <a href="../../../basdat/coachpage/kategori/kategori.php">kategori</a></li>
                 <li> <a href="../../../basdat/coachpage/kegiatan/kegiatan.php">kegiatan</a></li>
                 <li> <a href="../../../basdat/fasilitasruang/fasilitas.php">fasilitas Ruang</a></li>
-             
+                <li> <a href="../../../basdat/fasilitasruang/fasilitas.php">Office Boy</a></li>
+            
             </ul>
+
+            </div>
         </div>
     </section>
 

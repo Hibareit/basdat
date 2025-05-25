@@ -20,7 +20,7 @@ include '../layouts/header.php';
                 <th scope="col">Nama</th>
                 <th scope="col">Tanggal Lahir</th>
                 <th scope="col">Pengalaman</th>
-                <th scope="col">Aksi</th>
+    
                 <th scope="col">Kategori</th>
                 <th scope="col">Kegiatan</th>
                 <th><a href="../coachpage/tambah_coach.php" class="btn btn-primary p-2">+Tambah</a></th>
@@ -33,12 +33,12 @@ include '../layouts/header.php';
                     <td><?= htmlspecialchars($coach->nama) ?></td>
                     <td><?= htmlspecialchars($coach->tanggal_lahir) ?></td>
                     <td><?= htmlspecialchars($coach->pengalaman) ?></td>
+                    <td><?= htmlspecialchars($coach->kategori_coach_id) ?></td>
+                    <td><?= htmlspecialchars($coach->kegiatan_id) ?></td>
                     <td>
                         <a href="edit_coach.php?id=<?= $coach->id ?>" class="btn btn-warning btn-sm">Edit</a>
                         <a href="function_coach.php?action=delete&id=<?= $coach->id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
-                    <td><?= htmlspecialchars($coach->kategori_coach_id) ?></td>
-                    <td><?= htmlspecialchars($coach->kegiatan_id) ?></td>
                 </tr>
             <?php } ?>
         </tbody>

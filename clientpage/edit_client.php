@@ -77,6 +77,7 @@ $coaches = mysqli_query($koneksi, "SELECT id, nama FROM coach");
 
         <div class="mb-3">
             <button type="submit" class="btn btn-primary" name="edit_client">Simpan Perubahan</button>
+             <a href="../clientpage/client.php" class="btn btn-secondary ms-2">Batal</a>
         </div>
     </form>
 </section>

@@ -29,8 +29,8 @@ include '../../layouts/header.php';
                     <td><?= htmlspecialchars($kategori->keahlian) ?></td>
                     <td><?= htmlspecialchars($kategori->jenis_kategori) ?></td>
                     <td>
-                        <a href="edit_kegiatan.php?id=<?= $kategori->id ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="function_kegiatan.php?action=delete&id=<?= $kategori->id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                        <a href="edit_kategori.php?id=<?= $kategori->id ?>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="function_kategori.php?action=delete&id=<?= $kategori->id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
                 </tr>
             <?php } ?>

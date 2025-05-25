@@ -2,8 +2,10 @@
 include("../koneksi.php");
 
 // Query for coaches
-$queryCoaches = 'SELECT * FROM coach;'; // Assuming you have a coach table
+$queryCoaches = 'SELECT * FROM fasilitas_ruang;'; // Assuming you have a fasilitas_ruang table
 $resultCoaches = mysqli_query($koneksi, $queryCoaches);
+
+
 
 include '../layouts/header.php';
 ?>
@@ -17,26 +19,26 @@ include '../layouts/header.php';
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Nama</th>
+                <th scope="col">Nama ruangan</th>
                 <th scope="col">jenis</th>
                 <th scope="col">kegiatan</th>
                 <th scope="col">office boy</th>
-                <th><a href="../coachpage/tambah_coach.php" class="btn btn-primary p-2">+Tambah</a></th>
+                <th><a href="../fasilitasruang/tambah_fasilitasruang.php" class="btn btn-primary p-2">+Tambah</a></th>
             </tr>
         </thead>
         <tbody>
-            <?php while ($coach = mysqli_fetch_object($resultCoaches)) { ?>
+            <?php while ($fasilitas_ruang = mysqli_fetch_object($resultCoaches)) { ?>
                 <tr>
-                    <td><?= $coach->id ?></td>
-                    <td><?= htmlspecialchars($coach->nama) ?></td>
-                    <td><?= htmlspecialchars($coach->tanggal_lahir) ?></td>
-                    <td><?= htmlspecialchars($coach->pengalaman) ?></td>
+                    <td><?= $fasilitas_ruang->id ?></td>
+                    <td><?= htmlspecialchars($fasilitas_ruang->nama) ?></td>
+                    <td><?= htmlspecialchars($fasilitas_ruang->jenis) ?></td>
+                    <td><?= htmlspecialchars($fasilitas_ruang->kegiatan_id) ?></td>
+                    <td><?= htmlspecialchars($fasilitas_ruang->office_boy_id) ?></td>
                     <td>
-                        <a href="edit_coach.php?id=<?= $coach->id ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="function_coach.php?action=delete&id=<?= $coach->id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                        <a href="edit_fasilitasruang.php?id=<?= $fasilitas_ruang->id ?>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="function_fasilitasruang.php?action=delete&id=<?= $fasilitas_ruang->id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
-                    <td><?= htmlspecialchars($coach->kategori_coach_id) ?></td>
-                    <td><?= htmlspecialchars($coach->kegiatan_id) ?></td>
+                   
                 </tr>
             <?php } ?>
         </tbody>

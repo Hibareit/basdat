@@ -1,39 +1,35 @@
 <?php
-include "../koneksi.php";
+include "../../koneksi.php";
 
 // FUNGSI
-function insertCoach($koneksi, $nama, $tanggal_lahir, $pengalaman, $kategori_coach_id, $kegiatan_id = null) {
-    $query = "INSERT INTO coach (nama, tanggal_lahir, pengalaman, kategori_coach_id, kegiatan_id) 
-              VALUES ('$nama', '$tanggal_lahir', '$pengalaman', '$kategori_coach_id', " . ($kegiatan_id ?: 'NULL') . ")";
+function insertKegiatan($koneksi, $durasi_kegiatan, $kegiatan, $nama) {
+    $query = "INSERT INTO kegiatan (durasi_kegiatan, kegiatan, nama) 
+              VALUES ('$durasi_kegiatan', '$kegiatan', '$nama')";
     return mysqli_query($koneksi, $query);
 }
 
-function updateCoach($koneksi, $id, $nama, $tanggal_lahir, $pengalaman, $kategori_coach_id, $kegiatan_id = null) {
-    $query = "UPDATE coach SET 
-              nama='$nama', 
-              tanggal_lahir='$tanggal_lahir', 
-              pengalaman='$pengalaman', 
-              kategori_coach_id='$kategori_coach_id', 
-              kegiatan_id=" . ($kegiatan_id ?: 'NULL') . "
+function updateKegiatan($koneksi, $id, $durasi_kegiatan, $kegiatan, $nama) {
+    $query = "UPDATE kegiatan SET 
+              durasi_kegiatan='$durasi_kegiatan', 
+              kegiatan='$kegiatan', 
+              nama='$nama' 
               WHERE id=$id";
     return mysqli_query($koneksi, $query);
 }
 
-function deleteCoach($koneksi, $id) {
-    $query = "DELETE FROM coach WHERE id=$id";
+function deleteKegiatan($koneksi, $id) {
+    $query = "DELETE FROM kegiatan WHERE id=$id";
     return mysqli_query($koneksi, $query);
 }
 
 // INSERT
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['tambah_coach'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['tambah_kegiatan'])) {
+    $durasi_kegiatan = mysqli_real_escape_string($koneksi, $_POST["durasi_kegiatan"]);
+    $kegiatan = mysqli_real_escape_string($koneksi, $_POST["kegiatan"]);
     $nama = mysqli_real_escape_string($koneksi, $_POST["nama"]);
-    $tanggal_lahir = mysqli_real_escape_string($koneksi, $_POST["tanggal_lahir"]);
-    $pengalaman = mysqli_real_escape_string($koneksi, $_POST["pengalaman"]);
-    $kategori_coach_id = mysqli_real_escape_string($koneksi, $_POST["kategori_coach_id"]);
-    $kegiatan_id = isset($_POST["kegiatan_id"]) ? mysqli_real_escape_string($koneksi, $_POST["kegiatan_id"]) : null;
 
-    if (insertCoach($koneksi, $nama, $tanggal_lahir, $pengalaman, $kategori_coach_id, $kegiatan_id)) {
-        header("Location: ../coachpage/coach.php");
+    if (insertKegiatan($koneksi, $durasi_kegiatan, $kegiatan, $nama)) {
+        header("Location: kegiatan.php");
         exit;
     } else {
         echo "Data gagal disimpan: " . mysqli_error($koneksi);
@@ -41,31 +37,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['tambah_coach'])) {
 }
 
 // EDIT
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_coach'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_kegiatan'])) {
     $id = mysqli_real_escape_string($koneksi, $_POST["id"]);
+    $durasi_kegiatan = (int)$_POST["durasi_kegiatan"]; // No need for isset() since it's required
+    $kegiatan = mysqli_real_escape_string($koneksi, $_POST["kegiatan"]);
     $nama = mysqli_real_escape_string($koneksi, $_POST["nama"]);
-    $tanggal_lahir = mysqli_real_escape_string($koneksi, $_POST["tanggal_lahir"]);
-    $pengalaman = mysqli_real_escape_string($koneksi, $_POST["pengalaman"]);
-    $kategori_coach_id = mysqli_real_escape_string($koneksi, $_POST["kategori_coach_id"]);
-    $kegiatan_id = isset($_POST["kegiatan_id"]) ? mysqli_real_escape_string($koneksi, $_POST["kegiatan_id"]) : null;
 
-    if (updateCoach($koneksi, $id, $nama, $tanggal_lahir, $pengalaman, $kategori_coach_id, $kegiatan_id)) {
-        header("Location: ../coachpage/coach.php");
+    if (updateKegiatan($koneksi, $id, $durasi_kegiatan, $kegiatan, $nama)) {
+        header("Location: kegiatan.php");
         exit;
     } else {
         echo "Data gagal diubah: " . mysqli_error($koneksi);
     }
 }
-
 // DELETE
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['action'] == 'delete') {
     $id = mysqli_real_escape_string($koneksi, $_GET["id"]);
 
-    if (deleteCoach($koneksi, $id)) {
-        header("Location: ../coachpage/coach.php");
+    if (deleteKegiatan($koneksi, $id)) {
+        header("Location: kegiatan.php");
         exit;
     } else {
         echo "Data gagal dihapus: " . mysqli_error($koneksi);
     }
 }
-?>

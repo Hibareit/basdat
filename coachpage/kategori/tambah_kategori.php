@@ -1,47 +1,38 @@
 <?php
-include("../koneksi.php");
+include("../../koneksi.php");
 
 $error = '';
 $success = '';
 
-// Fetch options for kategori_coach
-$kategoriResult = mysqli_query($koneksi, "SELECT id, keahlian FROM kategori_coach ORDER BY keahlian ASC");
-
-// Fetch options for kegiatan
-$kegiatanResult = mysqli_query($koneksi, "SELECT id, kegiatan FROM kegiatan ORDER BY kegiatan ASC");
-
+// Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve and sanitize form inputs
-    $nama = mysqli_real_escape_string($koneksi, trim($_POST['nama']));
-    $tanggal_lahir = mysqli_real_escape_string($koneksi, trim($_POST['tanggal_lahir']));
-    $pengalaman = mysqli_real_escape_string($koneksi, trim($_POST['pengalaman']));
-    $kategori_coach_id = mysqli_real_escape_string($koneksi, trim($_POST['kategori_coach_id']));
-    $kegiatan_id = mysqli_real_escape_string($koneksi, trim($_POST['kegiatan_id']));
+    $keahlian = mysqli_real_escape_string($koneksi, trim($_POST['keahlian']));
+    $jenis_kategori = mysqli_real_escape_string($koneksi, trim($_POST['jenis_kategori']));
 
     // Basic validation
-    if (empty($nama) || empty($tanggal_lahir) || empty($pengalaman) || empty($kategori_coach_id) || empty($kegiatan_id)) {
+    if (empty($keahlian) || empty($jenis_kategori)) {
         $error = "Semua field wajib diisi.";
     } else {
         // Insert into database
-        $query = "INSERT INTO coach (nama, tanggal_lahir, pengalaman, kategori_coach_id, kegiatan_id) 
-                  VALUES ('$nama', '$tanggal_lahir', '$pengalaman', '$kategori_coach_id', '$kegiatan_id')";
+        $query = "INSERT INTO kategori_coach (keahlian, jenis_kategori) 
+                  VALUES ('$keahlian', '$jenis_kategori')";
         if (mysqli_query($koneksi, $query)) {
-            $success = "Data coach berhasil ditambahkan.";
+            $success = "Data kategori coach berhasil ditambahkan.";
             // Clear form values after success
-           
+            $keahlian = '';
+            $jenis_kategori = '';
         } else {
             $error = "Error: " . mysqli_error($koneksi);
-            var_dump($kategori_coach_id);
-    exit;
         }
     }
 }
 
-include '../layouts/header.php';
+include '../../layouts/header.php';
 ?>
 
 <section class="p-4 ml-5 mr-5 w-90">
-    <h2>Tambah Coach Gym</h2>
+    <h2>Tambah Kategori Coach</h2>
 
     <?php if ($error): ?>
         <div class="alert alert-danger" role="alert">
@@ -53,49 +44,19 @@ include '../layouts/header.php';
         </div>
     <?php endif; ?>
 
-    <form action="tambah_coach.php" method="POST" class="mt-3">
+    <form action="tambah_kategori.php" method="POST" class="mt-3">
         <div class="form-group mb-3">
-            <label for="nama">Nama</label>
-            <input type="text" name="nama" id="nama" class="form-control" value="<?= htmlspecialchars($nama ?? '') ?>" required>
+            <label for="keahlian">Keahlian</label>
+            <input type="text" name="keahlian" id="keahlian" class="form-control" value="<?= htmlspecialchars($keahlian ?? '') ?>" required>
         </div>
         <div class="form-group mb-3">
-            <label for="tanggal_lahir">Tanggal Lahir</label>
-            <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control" value="<?= htmlspecialchars($tanggal_lahir ?? '') ?>">
-        </div>
-         <div class="form-group mb-3">
-            <label for="pengalaman" class="form-label">Pengalaman Gym</label>
-            <select class="form-select" name="pengalaman" id="pengalaman" required>
-                <option value="Calisthenics" <?= (isset($pengalaman) && $pengalaman == 'Calisthenics') ? 'selected' : '' ?>>Calisthenics</option>
-                <option value="Bodybuilding" <?= (isset($pengalaman) && $pengalaman == 'Bodybuilding') ? 'selected' : '' ?>>Bodybuilding</option>
-                <option value="Powerlifting" <?= (isset($pengalaman) && $pengalaman == 'Powerlifting') ? 'selected' : '' ?>>Powerlifting</option>
-            </select>
-        </div>
-        <div class="form-group mb-3">
-            <label for="kategori_coach_id">Kategori Coach</label>
-            <select name="kategori_coach_id" id="kategori_coach_id" class="form-control" >
-              
-                <?php while ($row = mysqli_fetch_assoc($kategoriResult)) : ?>
-                    <option value="<?= $row['id'] ?>" <?= (isset($kategori_coach_id) && $kategori_coach_id == $row['id']) ? 'selected' : '' ?>>
-                        <?= htmlspecialchars($row['keahlian']) ?>
-                    </option>
-                <?php endwhile; ?>
-            </select>
-        </div>
-        <div class="form-group mb-3">
-            <label for="kegiatan_id">Kegiatan</label>
-            <select name="kegiatan_id" id="kegiatan_id" class="form-control" >
-              
-                <?php while ($row = mysqli_fetch_assoc($kegiatanResult)) : ?>
-                    <option value="<?= $row['id'] ?>" <?= (isset($kegiatan_id) && $kegiatan_id == $row['id']) ? 'selected' : '' ?>>
-                        <?= htmlspecialchars($row['kegiatan']) ?>
-                    </option>
-                <?php endwhile; ?>
-            </select>
+            <label for="jenis_kategori">Jenis Kategori</label>
+            <input type="text" name="jenis_kategori" id="jenis_kategori" class="form-control" value="<?= htmlspecialchars($jenis_kategori ?? '') ?>" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Tambah Coach</button>
-        <a href="../coachpage/coach.php" class="btn btn-secondary ms-2">Batal</a>
+        <button type="submit" class="btn btn-primary">Tambah Kategori</button>
+        <a href="../../../basdat/coachpage/kategori/kategori.php" class="btn btn-secondary ms-2">Batal</a>
     </form>
 </section>
 
-<?php include '../layouts/footer.php'; ?>
+<?php include '../../layouts/footer.php'; ?>

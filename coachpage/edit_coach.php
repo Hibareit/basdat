@@ -75,6 +75,7 @@ $kegiatan = mysqli_query($koneksi, "SELECT id, kegiatan FROM kegiatan");
 
         <div class="mb-3">
             <button type="submit" class="btn btn-primary" name="edit_coach">Simpan Perubahan</button>
+             <a href="../coachpage/coach.php" class="btn btn-secondary ms-2">Batal</a>
         </div>
     </form>
 </section>

@@ -25,7 +25,6 @@ include '../layouts/header.php';
                 <th scope="col">Gender</th>
                 <th scope="col">Weight</th>
                 <th scope="col">Pengalaman</th>
-                <th scope="col">Aksi</th>
                 <th scope="col">Coach ID</th>
                  <th><a href="../clientpage/tambah_client.php" class="btn btn-primary p-2">+Tambah</a></th>
             </tr>
@@ -38,11 +37,11 @@ include '../layouts/header.php';
                     <td><?= $client->gender ?></td>
                     <td><?= $client->weight ?> kg</td>
                     <td><?= $client->pengalaman ?></td>
+                    <td><?= $client->coach_id ?></td>
                     <td>
                         <a href="edit_client.php?id=<?= $client->id ?>" class="btn btn-warning btn-sm">Edit</a>
                         <a href="function_client.php?action=delete&id=<?= $client->id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
-                    <td><?= $client->coach_id ?></td>
                 </tr>
             <?php } ?>
         </tbody>
