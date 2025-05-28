@@ -13,7 +13,7 @@
     list-style-type: none; /* remove default bullets */
     padding-left: 0;
   }
-  ul.custom-list li {
+  ul.custom-list li a {
     font-weight: 600;
     color: #333;
     padding: 8px 12px;
@@ -22,7 +22,7 @@
     transition: background-color 0.3s ease;
     cursor: pointer;
   }
-  ul.custom-list li:hover {
+  ul.custom-list li a:hover {
     background-color: #0d6efd;
     color: white;
   }
@@ -48,12 +48,14 @@
             <div class="">
 
             <ul class="m-2 p-2 d-flex gap-3 custom-list d-flex justify-content-center">
-                <li> <a href="../../../basdat/clientpage/client.php">Client</a></li>
+                <li > <a href="../../../basdat/clientpage/client.php">Client</a></li>
                 <li> <a href="../../../basdat/coachpage/coach.php">Coach</a></li>
                 <li> <a href="../../../basdat/coachpage/kategori/kategori.php">kategori</a></li>
                 <li> <a href="../../../basdat/coachpage/kegiatan/kegiatan.php">kegiatan</a></li>
                 <li> <a href="../../../basdat/fasilitasruang/fasilitas.php">fasilitas Ruang</a></li>
-                <li> <a href="../../../basdat/fasilitasruang/fasilitas.php">Office Boy</a></li>
+                <li> <a href="../../../basdat/office_boy/officeboy.php">Office Boy</a></li>
+                <li> <a href="../../../basdat/membership/membership.php">Membership</a></li>
+                <li> <a href="../../../basdat/gym_mitra/gymmitra.php">Gym mitra</a></li>
             
             </ul>
 
