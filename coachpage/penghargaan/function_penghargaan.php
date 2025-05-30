@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
     $id = mysqli_real_escape_string($koneksi, $_GET["id"]);
 
     if (deletePenghargaan($koneksi, $id)) {
-        header("Location: kategori.php");
+        header("Location: penghargaan.php");
         exit;
     } else {
         echo "Data gagal dihapus: " . mysqli_error($koneksi);

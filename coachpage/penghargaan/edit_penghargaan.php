@@ -20,10 +20,8 @@ $penghargaan_data = mysqli_fetch_assoc($result);
 
 $penghargaan_coaches = mysqli_query($koneksi, "SELECT id, nama FROM coach")
 
-if (!$penghargaan_data) {
-    echo "Data penghargaan tidak ditemukan.";
-    exit;
-}
+
+
 ?>
 
 <section class="p-4 ml-5 mr-5 w-50">

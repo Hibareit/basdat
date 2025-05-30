@@ -62,7 +62,7 @@ include '../../layouts/header.php';
         </div>
 
         <button type="submit" class="btn btn-primary">Tambah Sertifikat</button>
-        <a href="../../../basdat/coachpage/kategori/kategori.php" class="btn btn-secondary ms-2">Batal</a>
+        <a href="../../../basdat/coachpage/penghargaan/penghargaan.php" class="btn btn-secondary ms-2">Batal</a>
     </form>
 </section>
 
