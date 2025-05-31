@@ -75,6 +75,7 @@ $jenis_options = ['Weightlifting', 'Group Exercise', 'Cardio', 'Sauna', 'Change 
 
         <div class="mb-3">
             <button type="submit" class="btn btn-primary" name="edit_fasilitas">Simpan Perubahan</button>
+               <a href="fasilitasruang.php" class="btn btn-secondary ms-2">Batal</a>
         </div>
     </form>
 </section>

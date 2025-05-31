@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $jenis_kategori = mysqli_real_escape_string($koneksi, trim($_POST['jenis_kategori']));
 
     // Basic validation
-    if (empty($keahlian) || empty($jenis_kategori)) {
+    if ( empty($jenis_kategori)) {
         $error = "Semua field wajib diisi.";
     } else {
         // Insert into database
@@ -47,7 +47,7 @@ include '../../layouts/header.php';
     <form action="tambah_kategori.php" method="POST" class="mt-3">
         <div class="form-group mb-3">
             <label for="keahlian">Keahlian</label>
-            <input type="text" name="keahlian" id="keahlian" class="form-control" value="<?= htmlspecialchars($keahlian ?? '') ?>" required>
+            <input type="text" name="keahlian" id="keahlian" class="form-control" value="<?= htmlspecialchars($keahlian ?? '') ?>" >
         </div>
         <div class="form-group mb-3">
             <label for="jenis_kategori">Jenis Kategori</label>

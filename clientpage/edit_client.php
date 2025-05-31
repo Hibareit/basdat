@@ -21,7 +21,7 @@ $coaches = mysqli_query($koneksi, "SELECT id, nama FROM coach");
 ?>
 
 <section class="p-4 ml-5 mr-5 w-50">
-    <form action="function_coach.php" method="POST">
+    <form action="function_client.php" method="POST">
         <input type="hidden" name="action" value="edit">
         <input type="hidden" name="id" value="<?= $client['id'] ?>">
 

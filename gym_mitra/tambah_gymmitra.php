@@ -12,9 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lokasi = mysqli_real_escape_string($koneksi, trim($_POST['lokasi']));
 
     // Basic validation
-    if (empty($jenis) || empty($nama) || empty($lokasi)) {
-        $error = "Semua field wajib diisi.";
-    } else {
+
         // Insert into database
         $query = "INSERT INTO gym_mitra (jenis, nama, lokasi) 
                   VALUES ('$jenis', '$nama', '$lokasi')";
@@ -27,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $error = "Error: " . mysqli_error($koneksi);
         }
-    }
+    
 }
 
 include '../layouts/header.php';
@@ -49,15 +47,15 @@ include '../layouts/header.php';
     <form action="tambah_gymmitra.php" method="POST" class="mt-3">
         <div class="form-group mb-3">
             <label for="jenis">Jenis</label>
-            <input type="text" name="jenis" id="jenis" class="form-control" value="<?= htmlspecialchars($jenis ?? '') ?>" required>
+            <input type="text" name="jenis" id="jenis" class="form-control" value="<?= htmlspecialchars($jenis ?? '') ?>" >
         </div>
         <div class="form-group mb-3">
             <label for="nama">Nama</label>
-            <input type="text" name="nama" id="nama" class="form-control" value="<?= htmlspecialchars($nama ?? '') ?>" required>
+            <input type="text" name="nama" id="nama" class="form-control" value="<?= htmlspecialchars($nama ?? '') ?>" >
         </div>
         <div class="form-group mb-3">
             <label for="lokasi">Lokasi</label>
-            <input type="text" name="lokasi" id="lokasi" class="form-control" value="<?= htmlspecialchars($lokasi ?? '') ?>" required>
+            <input type="text" name="lokasi" id="lokasi" class="form-control" value="<?= htmlspecialchars($lokasi ?? '') ?>" >
         </div>
 
         <button type="submit" class="btn btn-primary">Tambah Gym Mitra</button>
