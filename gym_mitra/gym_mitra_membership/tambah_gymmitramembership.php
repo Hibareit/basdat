@@ -8,7 +8,7 @@ $success = '';
 $gyms = mysqli_query($koneksi, "SELECT id, nama FROM gym_mitra");
 $memberships = mysqli_query($koneksi, "SELECT id, nama FROM membership");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tambah_gym_mitra_membership'])) {
     $gym_mitra_id = (int)$_POST['gym_mitra_id'];
     $membership_id = (int)$_POST['membership_id'];
 
@@ -22,13 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $check_result = mysqli_query($koneksi, $check_sql);
         
         if (mysqli_num_rows($check_result) > 0) {
-            // JIKA SUDAH ADA, TAMPILKAN PESAN ERROR
             $error = "Maaf, relasi antara Gym Mitra dan Membership ini sudah ada dalam sistem!";
         } else {
-            // JIKA BELUM ADA, LAKUKAN INSERT
             $query = "INSERT INTO gym_mitra_membership (gym_mitra_id, membership_id) 
                      VALUES ($gym_mitra_id, $membership_id)";
-            
             if (mysqli_query($koneksi, $query)) {
                 $success = "Relasi Gym Mitra dan Membership berhasil ditambahkan.";
             } else {
@@ -36,11 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+    // Query ulang untuk dropdown agar tidak error pointer
+    $gyms = mysqli_query($koneksi, "SELECT id, nama FROM gym_mitra");
+    $memberships = mysqli_query($koneksi, "SELECT id, nama FROM membership");
 }
-
-// Reset pointer result untuk dropdown
-mysqli_data_seek($gyms, 0);
-mysqli_data_seek($memberships, 0);
 
 include '../../layouts/header.php';
 ?>
@@ -48,7 +44,6 @@ include '../../layouts/header.php';
 <section class="p-4 ml-5 mr-5 w-90">
     <h2>Tambah Relasi Gym Mitra & Membership</h2>
 
-    <!-- TAMPILKAN PESAN ERROR JIKA ADA -->
     <?php if (!empty($error)): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Error!</strong> <?= htmlspecialchars($error) ?>
@@ -56,7 +51,6 @@ include '../../layouts/header.php';
         </div>
     <?php endif; ?>
 
-    <!-- TAMPILKAN PESAN SUKSES JIKA ADA -->
     <?php if (!empty($success)): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Sukses!</strong> <?= htmlspecialchars($success) ?>
@@ -89,9 +83,8 @@ include '../../layouts/header.php';
             </select>
         </div>
 
-       
-          <div class="mb-3">
-            <button type="submit" class="btn btn-primary" name="edit_gym_mitra_membership">Simpan Perubahan</button>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary" name="tambah_gym_mitra_membership">Tambah</button>
             <a href="../gymmitra.php" class="btn btn-secondary ms-2">Batal</a>
         </div>
     </form>

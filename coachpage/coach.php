@@ -2,7 +2,11 @@
 include("../koneksi.php");
 
 // Query for coaches
-$queryCoaches = 'SELECT * FROM coach;'; // Assuming you have a coach table
+$queryCoaches = 'SELECT c.*, k.jenis_kategori AS kategori_nama, kg.kegiatan AS nama_kegiatan
+                 FROM coach c
+                 LEFT JOIN kategori_coach k ON c.kategori_coach_id = k.id
+                 LEFT JOIN kegiatan kg ON c.kegiatan_id = kg.id';
+; // Assuming you have a coach table
 $resultCoaches = mysqli_query($koneksi, $queryCoaches);
 
 include '../layouts/header.php';
@@ -33,8 +37,8 @@ include '../layouts/header.php';
                     <td><?= htmlspecialchars($coach->nama) ?></td>
                     <td><?= htmlspecialchars($coach->tanggal_lahir) ?></td>
                     <td><?= htmlspecialchars($coach->pengalaman) ?></td>
-                    <td><?= htmlspecialchars($coach->kategori_coach_id) ?></td>
-                    <td><?= htmlspecialchars($coach->kegiatan_id) ?></td>
+                    <td><?= htmlspecialchars($coach->kategori_nama) ?></td>
+                    <td><?= htmlspecialchars($coach->nama_kegiatan) ?></td>
                     <td>
                         <a href="edit_coach.php?id=<?= $coach->id ?>" class="btn btn-warning btn-sm">Edit</a>
                         <a href="function_coach.php?action=delete&id=<?= $coach->id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>

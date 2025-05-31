@@ -26,16 +26,13 @@
         
         <div class="mb-3">
             <label for="pengalaman" class="form-label">Pengalaman Gym</label>
-            <select class="form-select" name="pengalaman" id="pengalaman">
-                <option value="Pemula">Pemula</option>
-                <option value="Menengah">Menengah</option>
-                <option value="Profesional">Profesional</option>
-            </select>
+              <input type="text" class="form-control" name="pengalaman" id="pengalaman">
+                
         </div>
 
         <div class="mb-3">
             <label for="coach_id" class="form-label">Pilih Coach</label>
-            <select class="form-select" name="coach_id" id="coach_id" required>
+            <select class="form-select" name="coach_id" id="coach_id">
                 <?php
                 // Fetch options for coach from the database
                 include("../koneksi.php");

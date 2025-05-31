@@ -1,8 +1,10 @@
 <?php
 include("../../koneksi.php");
 
-// Query untuk data penghargaan
-$queryPenghargaan = 'SELECT * FROM penghargaan;';
+// Query penghargaan JOIN coach untuk ambil nama coach
+$queryPenghargaan = 'SELECT p.*, c.nama AS nama_coach
+                     FROM penghargaan p
+                     LEFT JOIN coach c ON p.coach_id = c.id';
 $resultPenghargaan = mysqli_query($koneksi, $queryPenghargaan);
 
 include '../../layouts/header.php';
@@ -17,7 +19,7 @@ include '../../layouts/header.php';
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Sertifikat Keahlian</th>
-                <th scope="col">Coach Id</th>
+                <th scope="col">Coach</th>
                 <th>
                     <a href="tambah_penghargaan.php" class="btn btn-primary p-2">+Tambah</a>
                 </th>
@@ -28,7 +30,7 @@ include '../../layouts/header.php';
                 <tr>
                     <td><?= $penghargaan->id ?></td>
                     <td><?= htmlspecialchars($penghargaan->sertifikat_keahlian) ?></td>
-                    <td><?= htmlspecialchars($penghargaan->coach_id) ?></td>
+                    <td><?= htmlspecialchars($penghargaan->nama_coach) ?></td>
                     <td>
                         <a href="edit_penghargaan.php?id=<?= $penghargaan->id ?>" class="btn btn-warning btn-sm">Edit</a>
                         <a href="function_penghargaan.php?action=delete&id=<?= $penghargaan->id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>

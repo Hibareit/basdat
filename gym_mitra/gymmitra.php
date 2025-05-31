@@ -1,12 +1,15 @@
 <?php
 include("../koneksi.php");
 
-// Query for gym partners
-$queryGymMitra = 'SELECT * FROM gym_mitra;'; // Query to fetch gym partners
+// Query untuk gym mitra
+$queryGymMitra = 'SELECT * FROM gym_mitra;';
 $resultGymMitra = mysqli_query($koneksi, $queryGymMitra);
 
-// Query for gym mitra memberships
-$queryGymMitraMembership = 'SELECT * FROM gym_mitra_membership;'; // Query to fetch gym mitra memberships
+// Query untuk gym mitra membership JOIN gym_mitra dan membership
+$queryGymMitraMembership = 'SELECT gmm.*, gm.nama AS nama_gym_mitra, m.nama AS nama_membership
+    FROM gym_mitra_membership gmm
+    LEFT JOIN gym_mitra gm ON gmm.gym_mitra_id = gm.id
+    LEFT JOIN membership m ON gmm.membership_id = m.id';
 $resultGymMitraMembership = mysqli_query($koneksi, $queryGymMitraMembership);
 
 include '../layouts/header.php';
@@ -51,8 +54,8 @@ include '../layouts/header.php';
     <table class="table table-red mt-3">
         <thead>
             <tr>
-                <th scope="col">Gym Mitra ID</th>
-                <th scope="col">Membership ID</th>
+                <th scope="col">Gym Mitra</th>
+                <th scope="col">Membership</th>
                 <th>
                     <a href="gym_mitra_membership/tambah_gymmitramembership.php" class="btn btn-primary p-2">+Tambah</a>
                 </th>
@@ -61,16 +64,15 @@ include '../layouts/header.php';
         <tbody>
             <?php while ($gymMitraMembership = mysqli_fetch_object($resultGymMitraMembership)) { ?>
                 <tr>
-                    <td><?= htmlspecialchars($gymMitraMembership->gym_mitra_id) ?></td>
-                    <td><?= htmlspecialchars($gymMitraMembership->membership_id) ?></td>
+                    <td><?= htmlspecialchars($gymMitraMembership->nama_gym_mitra) ?></td>
+                    <td><?= htmlspecialchars($gymMitraMembership->nama_membership) ?></td>
                     <td>
-                        <a href="gym_mitra_membership/edit_gymmitramembership.php?id=<?= $gymMitraMembership->gym_mitra_id ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="gym_mitra_membership/function_gymmitramembership.php?action=delete&id=<?= $gymMitraMembership->gym_mitra_id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                        <a href="gym_mitra_membership/edit_gymmitramembership.php?id=<?= $gymMitraMembership->gym_mitra_id ?>&mid=<?= $gymMitraMembership->membership_id ?>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="gym_mitra_membership/function_gymmitramembership.php?action=delete&id=<?= $gymMitraMembership->gym_mitra_id ?>&mid=<?= $gymMitraMembership->membership_id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
 </section>
-
 <?php include '../layouts/footer.php'; ?>
